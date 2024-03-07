@@ -27,8 +27,9 @@ jobs:
     - name: Validar resultado sin errores
       if: ${{ success() }}
       env:
+        MENSAJE_EXITO: Todas las pruebas fueron exitosas
       #run: echo "::save-state name=respuesta::${MENSAJE_EXITO}"
-      run: echo "respuesta = Todas las pruebas fueron exitosas" >> GITHUB_OUTPUT
+      run: echo "respuesta = MENSAJE_EXITO" >> GITHUB_OUTPUT
     - name: Cálculo de cubrimiento
       id: cubrimiento
       run: |
