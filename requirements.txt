@@ -6,4 +6,4 @@ coverage==5.3
 
 faker
 
-faker_food
+faker-food
