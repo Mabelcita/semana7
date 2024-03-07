@@ -45,19 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "prueba automerge"
-      - name: Close Pull
-        uses: superbrothers/close-pull-request@v3
+     - name: Close Pull
+        uses: satya-500/github-action-close-pull@v1
         with:
-         comment: Auto-closing pull request
-         # name: Close Pull Request
-# on:
-#   pull_request_target:
-#     types: [opened]
-# jobs:
-#   run:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: superbrothers/close-pull-request@v3
-#       with:
-#         # Optional. Post a issue comment just before closing a pull request.
-#         comment: "We do not accept PRs. If you have any questions, please feel free to contact us."
+          comment: Auto-closing pull request
