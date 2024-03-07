@@ -46,7 +46,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "prueba automerge"
       - name: Close Pull
-        uses: peter-evans/close-pull@v3
+        uses: superbrothers/close-pull-request@v3
         with:
          comment: Auto-closing pull request
          # name: Close Pull Request
