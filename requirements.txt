@@ -5,3 +5,5 @@ PyQt5== 5.15.10
 coverage==5.3
 
 faker
+
+faker-food
