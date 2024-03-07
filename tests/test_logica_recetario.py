@@ -345,19 +345,22 @@ class LogicaRecetarioTestCase(unittest.TestCase):
           self.assertEqual(self.logica.validar_crear_editar_receta(0, 'Ajiaco', '01:00:00', '1', '1', instrucciones ), "Instrucciones Receta Invalido")
 
      def test_crear_receta(self):
-        self.assertEqual(self.logica.crear_receta( 'Ajiaco', '01:00:00', '1', '1', 'Hervir agua' ), '')
+        self.assertEqual(self.logica.crear_receta( self.fake.unique.dish(),str(self.fake.time_object())[0:8], self.fake.random_int(1,6), self.fake.random_int(100, 2500), self.fake.paragraph(nb_sentences=5, variable_nb_sentences=False)) , '')
 
      def test_crear_receta_repetida(self):
-        self.logica.crear_receta( 'Ajiaco', '01:00:00', '1', '1', 'Hervir agua' )
-        self.assertEqual(self.logica.validar_crear_editar_receta(0, 'Ajiaco', '01:00:00', '1', '1', "instrucciones" ), "Receta ya existe")
+        nombre= self.fake.unique.dish()
+        self.logica.crear_receta(nombre,str(self.fake.time_object())[0:8], self.fake.random_int(1,6), self.fake.random_int(100, 2500), self.fake.paragraph(nb_sentences=5, variable_nb_sentences=False))
+        receta_id = self.session.query(Receta).filter(Receta.nombre == nombre).first().id
+        self.assertEqual(self.logica.validar_crear_editar_receta(receta_id, nombre,str(self.fake.time_object())[0:8], self.fake.random_int(1,6), self.fake.random_int(100, 2500), self.fake.paragraph(nb_sentences=5, variable_nb_sentences=False)), "Receta ya existe")
 
      def test_verificar_almacenamiento_crear_receta(self):
-        self.logica.crear_receta( 'Ajiaco', '01:00:00', '1', '1', 'Hervir agua' )
+        nombre= self.fake.unique.dish()
+        instrucciones = self.fake.paragraph(nb_sentences=5, variable_nb_sentences=False)
+        self.logica.crear_receta( nombre,str(self.fake.time_object())[0:8], self.fake.random_int(1,6), self.fake.random_int(100, 2500), instrucciones)
         self.session = Session()
-        receta = self.session.query(Receta).filter(Receta.nombre == 'Ajiaco').first()
-        self.assertEqual(receta.nombre, 'Ajiaco')
-        self.assertEqual(receta.instrucciones, 'Hervir agua')
-
+        receta = self.session.query(Receta).filter(Receta.nombre == nombre).first()
+        self.assertEqual(receta.nombre, nombre)
+        self.assertEqual(receta.instrucciones, instrucciones)
         
      def test_verificar_lista_ingredientes_receta_vacia(self):
           receta = Receta(nombre = self.fake.unique.dish(),
