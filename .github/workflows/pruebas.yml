@@ -13,6 +13,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
           python-version: '3.7'
+    - name: Correr requirements
+      id: instalar-dependencias
+      run: pip install -r requirements.txt
     - name: Correr pruebas
       id: correr-pruebas
       run: python -m unittest -v tests/test_logica_recetario.py
