@@ -7,3 +7,4 @@ coverage==5.3
 faker
 
 faker-food
+
