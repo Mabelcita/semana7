@@ -34,6 +34,7 @@ jobs:
       run: |
           coverage run -m unittest tests/test_logica_recetario.py
           coverage report -m
+
   automerge:
     name: Automerge
     needs: job1
@@ -44,17 +45,19 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "prueba automerge"
-
-  name: Close Pull Request
-
-on:
-  pull_request_target:
-    types: [opened]
-jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: superbrothers/close-pull-request@v3
-      with:
-        # Optional. Post a issue comment just before closing a pull request.
-        comment: "We do not accept PRs. If you have any questions, please feel free to contact us."
+      - name: Close Pull
+        uses: peter-evans/close-pull@v3
+        with:
+         comment: Auto-closing pull request
+         # name: Close Pull Request
+# on:
+#   pull_request_target:
+#     types: [opened]
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: superbrothers/close-pull-request@v3
+#       with:
+#         # Optional. Post a issue comment just before closing a pull request.
+#         comment: "We do not accept PRs. If you have any questions, please feel free to contact us."
