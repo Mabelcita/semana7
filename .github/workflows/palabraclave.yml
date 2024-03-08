@@ -21,22 +21,22 @@ jobs:
 
     - name: Pull del cambio desde el servidor
       env:
-          ramaLocal: ${{ github.ref }}
-          USERNAME: ${{ secrets.USERNAME }}
-          TOKEN: ${{ secrets.TOKEN }}
+        ramaLocal: ${{ github.ref }}
+        USERNAME: ${{ secrets.USERNAME }}
+        TOKEN: ${{ secrets.TOKEN }}
     
       uses: devmasx/merge-branch@master
       with:
-          type: now
-          from_branch: develop
-          target_branch: ${{ github.ref }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Merge develop HU
+        type: now
+        from_branch: develop
+        target_branch: ${{ github.ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        message: Merge develop HU
 
     - name: Configuración de entorno de python
       uses: actions/setup-python@v2
       with:
-          python-version: '3.10'
+        python-version: '3.10'
    
     - name: Instalación de librerías y dependencias
       run: |
@@ -49,24 +49,22 @@ jobs:
 
     - name: Validar resultado con errores
       if: ${{ failure() }}
-      env:
-        MENSAJE_ERROR: Una o varias pruebas fallaron
-      run: echo "::set-output name=respuesta::${MENSAJE_ERROR}"
+        exit 1
 
     - name: Validar resultado sin errores
       if: ${{ success() }}
       env:
-          ramaLocal: ${{ github.ref }}
-          USERNAME: ${{ secrets.USERNAME }}
-          TOKEN: ${{ secrets.TOKEN }}
+        ramaLocal: ${{ github.ref }}
+        USERNAME: ${{ secrets.USERNAME }}
+        TOKEN: ${{ secrets.TOKEN }}
     
       uses: devmasx/merge-branch@master
       with:
-          type: now
-          from_branch: ${{ github.ref }}
-          target_branch: develop
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Merge HU a develop
+        type: now
+        from_branch: ${{ github.ref }}
+        target_branch: develop
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        message: Merge HU a develop
 
 
     - name: Cálculo de cubrimiento
