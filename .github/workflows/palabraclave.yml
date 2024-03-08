@@ -31,3 +31,5 @@ jobs:
           from_branch: desarrollo
           target_branch: ${{ github.ref }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: Merge desarrolla HU
+
