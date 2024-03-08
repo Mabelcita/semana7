@@ -46,6 +46,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: concoer rama
+      id: rama
+      env:
+        rama: ${{ github.ref }}
+      run: echo "::set-output name=respuesta::${rama}"
+      
     - name: Correr pruebas
       id: correr-pruebas
       run: python -m unittest -v tests/test_logica_recetario.py
@@ -61,7 +67,7 @@ jobs:
       env:
         MENSAJE_EXITO: Todas las pruebas fueron exitosas
       run: echo "::save-state name=respuesta::${MENSAJE_EXITO}"
-      
+
     - name: Cálculo de cubrimiento
       id: cubrimiento
       run: |
