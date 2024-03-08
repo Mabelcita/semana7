@@ -34,7 +34,7 @@ jobs:
           message: Merge develop HU
 
     - name: Checkout de repositorio
-      uses: actions/checkout@v2
+      uses: actions/checkout@develop
 
     - name: Configuración de entorno de python
       uses: actions/setup-python@v2
@@ -46,7 +46,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: concoer rama
+    - name: conocer rama
       id: rama
       env:
         rama: ${{ github.ref }}
