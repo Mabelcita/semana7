@@ -46,7 +46,7 @@ jobs:
     - name: cambiar rama
       id: rama
       run: |
-          git checkout desarrollo
+          git checkout develop
       
     - name: Correr pruebas
       id: correr-pruebas
