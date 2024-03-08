@@ -10,7 +10,7 @@ permissions:
 jobs:
 
   PalabraClaveCommit:
-    if: ${{ contains(github.event.head_commit.message, 'PALABRACLAVE') }}
+    if: ${{ contains(github.event.head_commit.message, 'MERGE') }}
     name: palabra
     runs-on: ubuntu-latest
     steps:
@@ -74,4 +74,3 @@ jobs:
       run: |
           coverage run -m unittest tests/test_logica_recetario.py
           coverage report -m
-
