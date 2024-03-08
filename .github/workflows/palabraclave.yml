@@ -56,8 +56,18 @@ jobs:
     - name: Validar resultado sin errores
       if: ${{ success() }}
       env:
-        MENSAJE_EXITO: Todas las pruebas fueron exitosas
-      run: echo "::save-state name=respuesta::${MENSAJE_EXITO}"
+          ramaLocal: ${{ github.ref }}
+          USERNAME: ${{ secrets.USERNAME }}
+          TOKEN: ${{ secrets.TOKEN }}
+    
+      uses: devmasx/merge-branch@master
+      with:
+          type: now
+          from_branch: ${{ github.ref }}
+          target_branch: develop
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: Merge develop HU
+
 
     - name: Cálculo de cubrimiento
       id: cubrimiento
