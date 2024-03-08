@@ -49,7 +49,9 @@ jobs:
 
     - name: Validar resultado con errores
       if: ${{ failure() }}
-        exit 1
+      run: |
+          echo "Error"
+          exit 1
 
     - name: Validar resultado sin errores
       if: ${{ success() }}
