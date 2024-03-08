@@ -43,11 +43,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: conocer rama
+    - name: cambiar rama
       id: rama
-      env:
-        rama: ${{ github.ref }}
-      run: echo "::set-output name=respuesta::${rama}"
+      run: |
+          git checkout desarrollo
       
     - name: Correr pruebas
       id: correr-pruebas
