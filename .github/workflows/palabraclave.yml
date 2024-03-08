@@ -47,7 +47,7 @@ jobs:
       id: correr-pruebas
       run: python -m unittest -v tests/test_logica_recetario.py
 
-    - name: Pruebas con errores
+    - name: Pruebas con errores salida
       if: ${{ failure() }}
       run: |
           echo "Error"
