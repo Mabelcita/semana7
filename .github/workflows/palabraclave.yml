@@ -74,6 +74,3 @@ jobs:
       run: |
           coverage run -m unittest tests/test_logica_recetario.py
           coverage report -m
-
-
-
