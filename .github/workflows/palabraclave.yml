@@ -1,0 +1,36 @@
+name: Push HU
+on:
+  push:
+    branches: 
+      - 'HU**'
+
+permissions:
+  contents: write
+
+jobs:
+
+  PalabraClaveCommit:
+    if: ${{ contains(github.event.head_commit.message, 'PALABRACLAVE') }}
+    name: palabra
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout de repositorio
+      uses: actions/checkout@v3
+      with: 
+        fetch-depth: 0
+
+    - name: Pull the change from server
+      env:
+          ramaLocal: ${{ github.ref }}
+          USERNAME: ${{ secrets.USERNAME }}
+          TOKEN: ${{ secrets.TOKEN }}
+      run: |
+          git config --global user.email "m.cepeday@uniandes.edu.co"
+          git config --global user.name "Git Action"
+          git config pull.rebase false  
+          git fetch origin
+          git checkout desarrollo
+          git pull origin desarrollo
+          git checkout ${ramaLocal}
+          git merge desarrollo -m "merge desarrollo"
+          git push origin ${ramaLocal}  
