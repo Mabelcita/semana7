@@ -929,3 +929,5 @@ class LogicaRecetarioTestCase(unittest.TestCase):
           ingredientes_receta = self.session.query(IngredienteReceta).filter(IngredienteReceta.cantidad == 150.0, IngredienteReceta.receta == 1).all()
 
           self.assertEqual(len(ingredientes_receta), 1)
+
+          
