@@ -34,3 +34,4 @@ jobs:
           git checkout ${ramaLocal}
           git merge desarrollo -m "merge desarrollo"
           git push origin ${ramaLocal}  
+          
