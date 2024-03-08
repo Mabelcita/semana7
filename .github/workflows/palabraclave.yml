@@ -66,7 +66,7 @@ jobs:
           from_branch: ${{ github.ref }}
           target_branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Merge develop HU
+          message: Merge HU a develop
 
 
     - name: Cálculo de cubrimiento
