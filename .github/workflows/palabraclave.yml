@@ -43,11 +43,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: cambiar rama
-      id: rama
-      run: |
-          git checkout develop
-      
     - name: Correr pruebas
       id: correr-pruebas
       run: python -m unittest -v tests/test_logica_recetario.py
